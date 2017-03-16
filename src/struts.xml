@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="default" extends="struts-default" namespace="/">
+	</package>
+	<package name="global" extends="json-default">
+		<interceptors>
+			<interceptor name="authority" class="org.filter.AuthInterceptor" />
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authority"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mydefault" />
+		<global-results>
+			<result type="json" name="error">
+				<param name="root">result</param>
+			</result>
+		</global-results>
+	</package>
+	<!-- 登录模块 -->
+	<package name="login1" extends="json-default" namespace="/">
+		<action name="login" class="org.action.LoginAction" method="login">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+	</package>
+
+	<constant name="struts.multipart.maxSize" value="62914560" />
+	<package name="appServer" extends="json-default" namespace="/">
+
+		<action name="changePw" class="org.action.LoginAction" method="changePw">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="changePw1" class="org.action.LoginAction" method="changePw1">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="register" class="org.action.RegisterAction"
+			method="register">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="getCellInfo1" class="org.action.CellAction"
+			method="getCellInfo_new">
+			<result type="json"></result>
+		</action>
+		<action name="getCellInfo" class="org.action.CellAction"
+			method="getCellInfo">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+		<!-- AppMMange -->
+		<action name="AddTopic" class="org.action.AppMMange" method="AddTopic">
+			<!-- 将返回类型设置为json -->
+			<interceptor-ref name="fileUpload">
+				<param name="maxinumSize">52428800</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" /><!-- 默认拦截器 -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="addComment" class="org.action.AppMMange" method="addComment">
+			<!-- 将返回类型设置为json -->
+			<interceptor-ref name="fileUpload">
+				<param name="maxinumSize">52428800</param><!-- 允许上传的单个文件 最大值 -->
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" /> <!-- 默认拦截器 -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="AddReply" class="org.action.AppMMange" method="AddReply">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="delTopic" class="org.action.AppMMange" method="delTopic">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="delComment" class="org.action.AppMMange" method="delComment">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="delReply" class="org.action.AppMMange" method="delReply">
+			<!-- 将返回类型设置为json -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="getTopics1" class="org.action.AppMMange" method="getTopics1">			<!-- 获取用户列表 -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="getComRep" class="org.action.AppMMange" method="getComRep">			<!-- 获取用户列表 -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="searchByKey" class="org.action.AppMMange" method="searchByKey">			<!-- 获取用户列表 -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="test1" class="org.action.AppMMange" method="test1">			<!-- 获取用户列表 -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="CheckAlive" class="org.action.AppMMange" method="CheckAlive">			<!-- 获取用户列表 -->
+			<result type="json">
+			</result>
+		</action>
+		<action name="photoUp1" class="org.action.DetailAction" method="photoUp">
+			<result type="json"><!-- 更换头像 -->
+			</result>
+		</action>
+		<action name="detailInfo" class="org.action.DetailAction"
+			method="getDetailInfo">
+			<result type="json">
+			</result>
+		</action>
+		<action name="UpdateInfo" class="org.action.DetailAction"
+			method="UpdateInfo">
+			<result type="json">
+			</result>
+		</action>
+		<action name="getExperts" class="org.action.RoleAction" method="getExperts">
+			<result type="json"></result>
+		</action>
+	</package>
+	<!-- IM功能模块 -->
+	<package name="IM" extends="json-default" namespace="/">
+		<action name="getGroupList" class="org.action.IMAction"
+			method="getGroupList">
+			<result type="json">
+			</result>
+		</action>
+	</package>	
+	<!-- APP界面维护模块 -->
+	<package name="activeApp" extends="json-default" namespace="/">
+		<action name="getLumps" class="org.action.ActivityAction"
+			method="getLumps">
+			<result type="json">
+			</result>
+		</action>
+		<action name="replaceApp" class="org.action.IndustryDynamicAction"
+			method="replaceApp">			<!-- 1.APP首页上的几张轮换图片替换 -->
+			<result type="json">
+			</result>
+		</action>
+
+		<action name="guideReplaceApp" class="org.action.IndustryDynamicAction"
+			method="guideReplaceApp">			<!-- 2.引导页图片替换 -->
+			<result type="json">
+			</result>
+		</action>
+
+		<action name="expertTeamApp" class="org.action.IndustryDynamicAction"
+			method="expertTeamApp">			<!-- 4.专家团队：图片头像替换，内容替换 -->
+			<result type="json">
+			</result>
+		</action>
+
+		<action name="industryNewsApp" class="org.action.IndustryDynamicAction"
+			method="industryNewsApp">			<!-- 6.行业新闻动态 -->
+			<result type="json">
+			</result>
+		</action>
+
+		<action name="theScrollBarApp" class="org.action.IndustryDynamicAction"
+			method="theScrollBarApp">			<!-- 7.滚动条 -->
+			<result type="json">
+			</result>
+		</action>
+
+
+		<action name="clinicalCaseApp" class="org.action.IndustryDynamicAction"
+			method="clinicalCaseApp">			<!-- 9.临床案例 -->
+			<result type="json">
+			</result>
+		</action>
+
+		<action name="publicClassApp" class="org.action.IndustryDynamicAction"
+			method="publicClassApp">			<!-- 10.公开课 -->
+			<result type="json">
+			</result>
+		</action>
+
+		<action name="healthKnowledgeApp" class="org.action.IndustryDynamicAction"
+			method="healthKnowledgeApp">			<!-- 11.健康小知识 -->
+			<result type="json">
+			</result>
+		</action>
+	</package>
+
+</struts>

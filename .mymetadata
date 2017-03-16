@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="CellBank"
+  id="myeclipse.1474871998202"
+  context-root="/CellBank"
+  j2ee-spec="5.0"
+  archive="CellBank.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
